@@ -1,8 +1,10 @@
+require('dotenv').config();
+
 const { MongoClient } = require("mongodb");
 
 class ProductModel {
-    uri = "mongodb+srv://admin:burger@cluster0.j7ncion.mongodb.net/test";
-    client = new MongoClient(this.uri);
+    uri = process.env.MONGO_URI;
+    client;
     burgerResponse = {};
     supplementsResponse = {};
 
@@ -11,22 +13,21 @@ class ProductModel {
             const database = this.client.db('burger-shop');
             const burgers = database.collection('burgers');
             await burgers.find().toArray((err, result) => {
+                if (err) throw err;
                 this.burgerResponse = result;
                 this.client.close();
             });
     }
 
     async getSupplements() {
-        try {
+            this.client = new MongoClient(this.uri);
             const database = this.client.db('burger-shop');
             const supplements = database.collection('supplements');
-            const query = { burgerName: "Curly Fires" };
-            const supplement = await supplements.findOne(query);
-            this.supplementsResponse = supplement;
-        } finally {
-            // Ensures that the client will close when you finish/error
-            await this.client.close();
-        }
+            await supplements.find().toArray((err, result) => {
+                if (err) throw err;
+                this.supplementsResponse = result;
+                this.client.close();
+            });
     }
 
     getBurgerResponse() {
