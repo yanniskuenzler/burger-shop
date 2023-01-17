@@ -2,7 +2,6 @@ const {ProductModel} = require("../models/ProductModel");
 const pmodel = new ProductModel();
 
 const getBurgers = (req, res) => {
-    res.send("Test");
     pmodel.getBurgers().then(() => {
         res.send(pmodel.getBurgerResponse());
     })
