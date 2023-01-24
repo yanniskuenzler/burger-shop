@@ -2,15 +2,15 @@ const {ProductModel} = require("../models/ProductModel");
 const pmodel = new ProductModel();
 
 const getBurgers = (req, res) => {
-    pmodel.getBurgers().then(() => {
-        res.send(pmodel.getBurgerResponse());
-    })
+    pmodel.modelEntry('burgers')
+        .then(data => res.send(data))
+        .catch(err => res.send('Es gab einen Fehler'));
 }
 
 const getSupplements = (req, res) => {
-    pmodel.getSupplements().then(() => {
-        res.send(pmodel.getSupplementsResponse());
-    })
+    pmodel.modelEntry('supplements')
+        .then(data => res.send(data))
+        .catch(err => res.send('Es gab einen Fehler'));
 }
 
 module.exports = {getBurgers, getSupplements}
