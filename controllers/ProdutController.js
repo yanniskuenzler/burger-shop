@@ -13,4 +13,8 @@ const getSupplements = (req, res) => {
         .catch(err => res.send('Es gab einen Fehler'));
 }
 
+const getBurgersByName = (req, res) => {
+
+}
+
 module.exports = {getBurgers, getSupplements}
