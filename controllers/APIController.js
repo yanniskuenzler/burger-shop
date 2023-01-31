@@ -1,6 +1,6 @@
 const healthCheck = (req, res) => {
-    console.log('200: Success! (Console)');
-    res.send('200: Success!');
+    console.info('200: Success! (Console)');
+    res.status(200).send('200: Success!');
 }
 
 module.exports = {healthCheck}

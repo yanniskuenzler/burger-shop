@@ -1,4 +1,5 @@
 # Burgershop Backend
+###### by Yannis Künzler in scope of a TBZ Project
 ___
 ### Description
 The backend is created based on the MVC-Pattern and includes the components model, view and controller. From the outside the user can access over a couple of endpoints with get requests. The data is saved in a [MongoDB](https://www.mongodb.com/) database which is a NoSQL Database.

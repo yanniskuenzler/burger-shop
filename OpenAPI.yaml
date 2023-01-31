@@ -1,0 +1,83 @@
+openapi: 3.0.3
+info:
+  title: "burgershop"
+  description: "Burger Shop Backend for TBZ Module xxx"
+  version: 1.0.0
+  contact:
+    name: "Yannis Künzler"
+    email: "yannis.kuenzler@edu.tbz.ch"
+    url: "https://github.com/yanniskuenzler"
+    license:
+      name: "MIT"
+      url: "https://opensource.org/licenses/MIT"
+servers:
+  - url: 'https://burger-shop.onrender.com/'
+paths:
+  /burgers:
+    get:
+      description: "Get burgers from the backend"
+      operationId: burgers
+      responses:
+        "200":
+          description: "JSON array of burgrs"
+          content:
+            application/json:
+              schema:
+                data:
+                  type: "array"
+                  $ref: "#/components/schemas/product"
+        "500":
+          description: "send the error msg"
+  /supplements:
+    get:
+      description: "Get supplements from the backend"
+      operationId: supplements
+      responses:
+        "200":
+          description: "JSON array of supplements"
+          content:
+            application/json:
+              schema:
+                data:
+                  type: "array"
+                  $ref: "#/components/schemas/product"
+        "500":
+          description: "send the error msg"
+  /healthcheck:
+    get:
+      description: "check if the API is online/available"
+      operationId: healthcheck
+      responses:
+        "200":
+          description: "response is just a little statement"
+
+components:
+  schemas:
+    product:
+      description: "model of product object"
+      type: "object"
+      properties:
+        _id:
+          description: "ID of product"
+          type: "string"
+          example: "63985246ee53d40662473844"
+        burgerName:
+          description: "name of product"
+          type: "string"
+          example: "Fried Chicken Burger"
+        ingredients:
+          schema:
+            type: "array"
+            $ref: "#/components/schemas/ingredient"
+        price:
+          description: "price of the product"
+          type: "string"
+          example: "16.00"
+        preperationTime:
+          description: "time to preperate the product"
+          type: "string"
+          example: "3:00"
+    ingredient:
+      description: ""
+      type: "string"
+      example: "Brioche Bun"

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const cors = require('cors');
 
-const {getBurgers, getSupplements, getBurgersByName} = require('./controllers/ProdutController');
+const {getBurgers, getSupplements} = require('./controllers/ProdutController');
 const {getFiliales} = require('./controllers/ShopController');
 const {healthCheck} = require('./controllers/APIController');
 
